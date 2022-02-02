@@ -166,7 +166,7 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 4% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modal-open;
@@ -181,7 +181,6 @@ main {
 
 .modal-body {
   padding: 15px 8%;
-  margin: 15px auto;
 }
 
 label {
@@ -312,7 +311,6 @@ input[data-error]::after {
   top: 15px;
   width: 32px;
   height: 32px;
-  opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
 }
@@ -403,6 +401,11 @@ input[data-error]::after {
   left: 0;
   right: 0;
   z-index: 99;
+}
+
+/* Show items when the selection box is open */
+.select-show {
+  display: block;
 }
 
 /* Hide the items when the select box is closed: */
