@@ -35,19 +35,19 @@ body {
   color: #000000;
   text-align: center;
   padding: 12px 12px;
-  margin: 5px;
+  margin: 2px;
   text-decoration: none;
   font-size: 20px;
   font-family: Roboto, sans-serif;
 }
 
-.top-nav .main-navbar a:hover {
+.top-nav a:hover {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
 }
 
-.top-nav a.active {
+.top-nav .active {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
@@ -71,6 +71,9 @@ body {
   }
 
   .top-nav .icon {
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 15px;
     display: block;
     position: absolute;
     right: 10px;
@@ -503,6 +506,8 @@ footer {
     background: #fff;
     color: #000;
     padding: 20px;
+    min-width: auto;
+    text-align: center;
   }
 
   .hero-content::after {
@@ -514,7 +519,7 @@ footer {
   }
 
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     white-space: normal;
   }
 
