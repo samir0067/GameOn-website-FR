@@ -15,10 +15,10 @@ const formData = document.querySelectorAll(".formData")
 
 // Launch modal event
 modalBtn.forEach((element) => element.addEventListener("click", function() {
-  modalBg.classList.add( "select-show")
+  modalBg.style.display = "block"
 }))
 
 // Close modal event
 closeBtn.forEach((element) => element.addEventListener("click", function() {
-  modalBg.classList.replace( "select-show", "select-hide")
+  modalBg.style.display = "none"
 }))
