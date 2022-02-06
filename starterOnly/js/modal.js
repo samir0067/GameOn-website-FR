@@ -3,6 +3,7 @@ const openModalBtn = document.querySelectorAll(".open-modal-btn")
 const closeModal = document.querySelectorAll(".close-modal")
 const closePopUp = document.querySelectorAll(".close-pop-up")
 const textControl = document.querySelectorAll(".text-control")
+const radioIcon = document.querySelectorAll(".radio-icon")
 
 const form = document.getElementById("form")
 const modal = document.getElementById("modal")
@@ -35,13 +36,15 @@ const errorLast = document.getElementById("error-last")
 const errorEmail = document.getElementById("error-email")
 const errorBirthdate = document.getElementById("error-birthdate")
 const errorQuantity = document.getElementById("error-quantity")
+const errorCity = document.getElementById("error-city")
 
 // flag to validate fields
 let firstIsValid = false
 let lastIsValid = false
-let emailIsValid = true
-let birthdateIsValid = true
-let quantityIsValid = true
+let emailIsValid = false
+let birthdateIsValid = false
+let quantityIsValid = false
+let cityIsValid = false
 
 // Function to check the fields
 function validate() {
@@ -105,11 +108,26 @@ function validate() {
     quantityIsValid = true
   }
 
+  // radio button
+  if (validateRadio(form.elements["location"]) === undefined) {
+    radioIcon.forEach(element => element.style.border = "solid 2px red")
+    errorCity.classList.add('errorField')
+    errorCity.innerHTML = 'Vous devez choisir une option'
+    cityIsValid = false
+  } else {
+    radioIcon.forEach(element => element.style.border = "solid 2px #279e7a")
+    errorCity.classList.remove('errorField')
+    errorCity.innerHTML = ''
+    cityIsValid = true
+  }
+
   if (firstIsValid &&
     lastIsValid &&
     emailIsValid &&
     birthdateIsValid &&
-    quantityIsValid) {
+    quantityIsValid &&
+    cityIsValid
+  ) {
     submissionForm()
   }
 
@@ -152,6 +170,15 @@ function validateBirthdate(birthdate) {
 function validateNumber(number) {
   const numberRegex = /^[1-9][0-9]?$|^100$/
   return numberRegex.test(number)
+}
+
+// Validation of the radio
+function validateRadio(radios) {
+  for (let radio of radios) {
+    if (radio.checked) {
+      return radio.value
+    }
+  }
 }
 
 // Validation of the modal form
