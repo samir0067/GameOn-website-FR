@@ -1,30 +1,28 @@
-function editNav() {
-  let topNav = document.getElementById("my-top-nav")
-  if (topNav.className === "top-nav") {
-    topNav.className += " responsive"
-  } else {
-    topNav.className = "top-nav"
-  }
-}
-
 // DOM Elements
-const modalBg = document.querySelector(".bg-round")
-const modalBtn = document.querySelectorAll(".modal-btn")
-const closeBtn = document.querySelectorAll(".close")
+const openModalBtn = document.querySelectorAll(".open-modal-btn")
+const closeModal = document.querySelectorAll(".close-modal")
+const closePopUp = document.querySelectorAll(".close-pop-up")
+const textControl = document.querySelectorAll(".text-control")
 
-// Launch modal event
-modalBtn.forEach((element) => element.addEventListener("click", function() {
-  modalBg.style.display = "block"
+const form = document.getElementById("form")
+const modal = document.getElementById("modal")
+const popup = document.getElementById("popup")
+
+// Handle modal form and popup validation
+openModalBtn.forEach((element) => element.addEventListener("click", function() {
+  modal.style.display = "block"
 }))
 
-// Close modal event
-closeBtn.forEach((element) => element.addEventListener("click", function() {
-  modalBg.style.display = "none"
-  // removeElementsByClass('errorField')
+closeModal.forEach((element) => element.addEventListener("click", function() {
+  modal.style.display = "none"
+}))
+
+closePopUp.forEach((element) => element.addEventListener("click", function() {
+  textControl.forEach(element => element.style.border = "1px solid #ccc")
+  popup.style.display = "none"
 }))
 
 // DOM form fields
-const form = document.getElementById("form")
 const first = document.getElementById("first")
 const last = document.getElementById("last")
 const email = document.getElementById("email")
@@ -38,62 +36,91 @@ const errorEmail = document.getElementById("error-email")
 const errorBirthdate = document.getElementById("error-birthdate")
 const errorQuantity = document.getElementById("error-quantity")
 
+// flag to validate fields
+let firstIsValid = false
+let lastIsValid = false
+let emailIsValid = true
+let birthdateIsValid = true
+let quantityIsValid = true
 
 // Function to check the fields
 function validate() {
-
   // field firstName
   if (first.value === '') {
     submissionDenied(first, errorFirst, 'Prénom requis')
+    firstIsValid = false
   } else if (first.value.length < 2) {
     submissionDenied(first, errorFirst, 'Minimum 2 caractères')
+    firstIsValid = false
   } else {
     submissionValidate(first, errorFirst)
+    firstIsValid = true
   }
 
   // field lastName
   if (last.value === '') {
     submissionDenied(last, errorLast, 'Nom requis')
+    lastIsValid = false
   } else if (last.value.length < 2) {
     submissionDenied(last, errorLast, 'Minimum 2 caractères')
+    lastIsValid = false
   } else {
     submissionValidate(last, errorLast)
+    lastIsValid = true
   }
 
   // field email
   if (email.value === '') {
     submissionDenied(email, errorEmail, 'E-mail requis')
+    emailIsValid = false
   } else if (!validateEmail(email.value)) {
     submissionDenied(email, errorEmail, 'Cet email n\'est pas valide')
+    emailIsValid = false
   } else {
     submissionValidate(email, errorEmail)
+    emailIsValid = true
   }
-  console.log('birthdate.value =>', birthdate.value)
+
   // field birthdate
   if (birthdate.value === '') {
     submissionDenied(birthdate, errorBirthdate, 'Date de naissance requis')
+    birthdateIsValid = false
   } else if (!validateBirthdate(birthdate.value)) {
     submissionDenied(birthdate, errorBirthdate, 'Date de naissance non valide')
+    birthdateIsValid = false
   } else {
     submissionValidate(birthdate, errorBirthdate)
+    birthdateIsValid = true
   }
 
   // field quantity
   if (quantity.value === '') {
     submissionDenied(quantity, errorQuantity, 'Nombre de tournois GameOn déjà participé requis')
+    quantityIsValid = false
   } else if (!validateNumber(quantity.value)) {
     submissionDenied(quantity, errorQuantity, 'Préciser entre 1 et 100 participations')
+    quantityIsValid = false
   } else {
     submissionValidate(quantity, errorQuantity)
+    quantityIsValid = true
   }
+
+  if (firstIsValid &&
+    lastIsValid &&
+    emailIsValid &&
+    birthdateIsValid &&
+    quantityIsValid) {
+    submissionForm()
+  }
+
 }
 
-// function removeElementsByClass(className){
-//   const elements = document.getElementsByClassName(className);
-//   while(elements.length > 0){
-//     elements[0].parentNode.removeChild(elements[0]);
-//   }
-// }
+// Handle submission
+function submissionForm() {
+  modal.style.display = "none"
+  popup.style.display = "block"
+  form.reset()
+}
 
 // Field submission denied
 function submissionDenied(field, errorField, message) {
@@ -118,7 +145,6 @@ function validateEmail(email) {
 // Validation of the birthdate field
 function validateBirthdate(birthdate) {
   const birthdateRegex = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/
-  // const birthdateRegexFr = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/
   return birthdateRegex.test(birthdate)
 }
 

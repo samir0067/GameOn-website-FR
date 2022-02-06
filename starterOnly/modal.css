@@ -99,7 +99,7 @@ main {
   text-align: justify;
 }
 
-.modal-btn {
+.open-modal-btn {
   font-size: 145%;
   background: #fe142f;
   display: flex;
@@ -110,7 +110,7 @@ main {
   cursor: pointer;
 }
 
-.modal-btn:hover {
+.open-modal-btn:hover {
   background: #3876ac;
 }
 
@@ -129,15 +129,11 @@ main {
   color: #fff;
   border-radius: 15px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 160000000px;
 }
 
 .button:hover {
   background: #3876ac;
-}
-
-.smFont {
-  font-size: 16px;
 }
 
 .bg-round {
@@ -163,11 +159,7 @@ main {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
-}
-
-.modal-body {
-  padding: 15px 8%;
+  padding: 30px;
 }
 
 label {
@@ -178,12 +170,6 @@ label {
   margin-bottom: 11px;
 }
 
-input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-
 .text-control {
   margin: 0;
   padding: 8px;
@@ -191,6 +177,8 @@ input {
   border-radius: 8px;
   font-size: 20px;
   height: 48px;
+  border: 1px solid #ccc;
+  outline: none;
 }
 
 .errorField {
@@ -271,7 +259,7 @@ input {
   top: 19%;
 }
 
-.close {
+.close-modal {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -281,8 +269,8 @@ input {
   transform: scale(0.7);
 }
 
-.close:before,
-.close:after {
+.close-modal:before,
+.close-modal:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -291,11 +279,11 @@ input {
   background-color: #fff;
 }
 
-.close:before {
+.close-modal:before {
   transform: rotate(45deg);
 }
 
-.close:after {
+.close-modal:after {
   transform: rotate(-45deg);
 }
 
@@ -532,5 +520,11 @@ footer {
   to {
     opacity: 1;
   }
+}
+
+/* pop-up-validation */
+
+.message-validation {
+  margin-bottom: 30px;
 }
 
