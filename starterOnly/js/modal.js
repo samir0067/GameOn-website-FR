@@ -50,7 +50,7 @@ function validate() {
     submissionDenied(first, errorFirst, 'Prénom requis')
     firstIsValid = false
   } else if (first.value.length < 2) {
-    submissionDenied(first, errorFirst, 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.')
+    submissionDenied(first, errorFirst, 'Veuillez entrer minimum 2 caractères')
     firstIsValid = false
   } else {
     submissionValidate(first, errorFirst)
@@ -62,7 +62,7 @@ function validate() {
     submissionDenied(last, errorLast, 'Nom requis')
     lastIsValid = false
   } else if (last.value.length < 2) {
-    submissionDenied(last, errorLast, 'Veuillez entrer 2 caractères ou plus pour le champ du nom.')
+    submissionDenied(last, errorLast, 'Veuillez entrer 2 caractères ou plus pour le champ du nom')
     lastIsValid = false
   } else {
     submissionValidate(last, errorLast)
@@ -83,7 +83,7 @@ function validate() {
 
   // field birthdate
   if (birthdate.value === '') {
-    submissionDenied(birthdate, errorBirthdate, 'Vous devez entrer votre date de naissance.')
+    submissionDenied(birthdate, errorBirthdate, 'Vous devez entrer votre date de naissance')
     birthdateIsValid = false
   } else if (!validateBirthdate(birthdate.value)) {
     submissionDenied(birthdate, errorBirthdate, 'Date de naissance non valide')
