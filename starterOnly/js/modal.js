@@ -4,6 +4,7 @@ const closeModal = document.querySelectorAll(".close-modal")
 const closePopUp = document.querySelectorAll(".close-pop-up")
 const textControl = document.querySelectorAll(".text-control")
 const radioIcon = document.querySelectorAll(".radio-icon")
+const termsIcon = document.querySelectorAll(".terms-icon")
 
 const form = document.getElementById("form")
 const modal = document.getElementById("modal")
@@ -29,6 +30,7 @@ const last = document.getElementById("last")
 const email = document.getElementById("email")
 const birthdate = document.getElementById("birthdate")
 const quantity = document.getElementById("quantity")
+const terms = document.getElementById("terms")
 
 // DOM error fields
 const errorFirst = document.getElementById("error-first")
@@ -37,6 +39,7 @@ const errorEmail = document.getElementById("error-email")
 const errorBirthdate = document.getElementById("error-birthdate")
 const errorQuantity = document.getElementById("error-quantity")
 const errorCity = document.getElementById("error-city")
+const errorTerms = document.getElementById("error-terms")
 
 // flag to validate fields
 let firstIsValid = false
@@ -45,6 +48,7 @@ let emailIsValid = false
 let birthdateIsValid = false
 let quantityIsValid = false
 let cityIsValid = false
+let termsIsValid = false
 
 // Function to check the fields
 function validate() {
@@ -121,13 +125,26 @@ function validate() {
     cityIsValid = true
   }
 
+  // checkbox terms
+  if (!terms.checked) {
+    termsIcon.forEach(element => element.style.border = "solid 2px red")
+    errorTerms.classList.add('errorField')
+    errorTerms.innerHTML = 'Vous devez acceptez les termes et conditions'
+    termsIsValid = false
+  } else {
+    termsIcon.forEach(element => element.style.border = "0")
+    errorTerms.classList.remove('errorField')
+    errorTerms.innerHTML = ''
+    termsIsValid = true
+  }
+
   if (firstIsValid &&
     lastIsValid &&
     emailIsValid &&
     birthdateIsValid &&
     quantityIsValid &&
-    cityIsValid
-  ) {
+    cityIsValid &&
+    termsIsValid) {
     submissionForm()
   }
 
@@ -142,14 +159,14 @@ function submissionForm() {
 
 // Field submission denied
 function submissionDenied(field, errorField, message) {
-  field.style.border = "solid 3px red"
+  field.style.border = "solid 2px red"
   errorField.classList.add('errorField')
   errorField.innerHTML = message
 }
 
 // Field submission validate
 function submissionValidate(field, errorField) {
-  field.style.border = "solid 3px limegreen"
+  field.style.border = "solid 2px limegreen"
   errorField.classList.remove('errorField')
   errorField.innerHTML = ''
 }
